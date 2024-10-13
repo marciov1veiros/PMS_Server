@@ -5,7 +5,7 @@ const UserSchema = mongoose.Schema(
     {
         _id: {
             type: String,
-            required: [true, "Please enter the e-mail as ID"],
+            required: [true, "Please enter the e-mail"],
         },
         name: {
             type: String,
@@ -14,11 +14,6 @@ const UserSchema = mongoose.Schema(
         surname: {
             type: String,
             required: [true, "Please enter the surname"],
-        },
-        email: {
-            type: String,
-            required: [true, "Please enter the e-mail"],
-            unique: true,
         },
         anonymous: {
             type: Boolean,
@@ -34,12 +29,11 @@ const UserSchema = mongoose.Schema(
             ref: "Role",
             required: true,
         }
-    },
-    { _id: false }
+    }
 );
 
 UserSchema.plugin(passportLocalMongoose, {
-    usernameField: 'email',
+    usernameField: '_id',
 });
 
 const User = mongoose.model("User", UserSchema);
