@@ -3,17 +3,22 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 const UserSchema = mongoose.Schema(
     {
+        _id: {
+            type: String,
+            required: [true, "Please enter the e-mail as ID"],
+        },
         name: {
             type: String,
             required: [true, "Please enter the name"],
         },
-        username: {
+        surname: {
             type: String,
-            required: [true, "Please enter the username"],
+            required: [true, "Please enter the surname"],
         },
         email: {
             type: String,
             required: [true, "Please enter the e-mail"],
+            unique: true,
         },
         anonymous: {
             type: Boolean,
@@ -29,11 +34,12 @@ const UserSchema = mongoose.Schema(
             ref: "Role",
             required: true,
         }
-    }
+    },
+    { _id: false }
 );
 
 UserSchema.plugin(passportLocalMongoose, {
-    usernameField: 'username',
+    usernameField: 'email',
 });
 
 const User = mongoose.model("User", UserSchema);
