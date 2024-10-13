@@ -7,6 +7,6 @@ const passport = require('passport');
 router.post('/login', login);
 router.post('/register', register);
 router.post('/logout', logout);
-router.get('/current-user', passport.authenticate('jwt', { session: false }), currentUser, currentUser);
+router.get('/current-user', passport.authenticate('jwt', { session: false }), currentUser);
 
 module.exports = router;
