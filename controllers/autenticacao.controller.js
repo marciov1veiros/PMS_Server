@@ -1,5 +1,6 @@
 const User = require('../models/utilizadores.model');
 const passport = require('passport');
+const jwt = require('jsonwebtoken');
 
 const login = (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
@@ -8,7 +9,8 @@ const login = (req, res, next) => {
 
         req.logIn(user, err => {
             if (err) return next(err);
-            return res.json({ message: 'Login bem-sucedido', user });
+            const token = jwt.sign({ id: user._id }, '8N4!mZ#q3WgT$3n&hF2@kR8zL5q%f7J4sH9!kV6eR2t#eM8xC5');
+            return res.json({ message: 'Login bem-sucedido', token });
         });
     })(req, res, next);
 };

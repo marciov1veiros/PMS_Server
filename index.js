@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const JwtStrategy = require('passport-jwt').Strategy; // Importando a estratégia JWT
+const ExtractJwt = require('passport-jwt').ExtractJwt; // Importando para extrair o JWT
 const session = require('express-session');
 const User = require('./models/utilizadores.model.js'); // Importando o modelo de usuário
 
@@ -39,6 +41,25 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate())); // Autenticação local com o Passport
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+// Configuração da estratégia JWT
+const opts = {
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: '8N4!mZ#q3WgT$3n&hF2@kR8zL5q%f7J4sH9!kV6eR2t#eM8xC5', // Substitua pelo seu segredo
+};
+
+// Definindo a estratégia JWT
+passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
+    User.findById(jwt_payload.id) // Buscando o usuário pelo ID no payload
+        .then(user => {
+            if (user) {
+                return done(null, user); // Usuário encontrado
+            } else {
+                return done(null, false); // Usuário não encontrado
+            }
+        })
+        .catch(err => done(err, false));
+}));
 
 // routes
 app.use("/api/products", productRoute);
