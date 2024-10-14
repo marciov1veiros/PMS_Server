@@ -6,6 +6,7 @@ const JwtStrategy = require('passport-jwt').Strategy; // Importando a estratégi
 const ExtractJwt = require('passport-jwt').ExtractJwt; // Importando para extrair o JWT
 const session = require('express-session');
 const User = require('./models/utilizadores.model.js'); // Importando o modelo de usuário
+require('dotenv').config();
 
 // Const Routes
 const productRoute = require('./routes/product.route.js');
