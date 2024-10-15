@@ -1,4 +1,4 @@
-const Role = require('../models/papeis.model');
+const Role = require('../models/role.model');
 
 // Get all roles
 const getRoles = async (req, res) => {

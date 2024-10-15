@@ -1,4 +1,4 @@
-const Donation = require('../models/doacoes.model');
+const Donation = require('../models/donation.model');
 
 // Get all donations
 const getDonations = async (req, res) => {

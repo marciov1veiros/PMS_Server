@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getComments, getComment, addComment, updateComment, deleteComment} = require('../controllers/comentarios.controller.js');
+const {getComments, getComment, addComment, updateComment, deleteComment} = require('../controllers/comment.controller.js');
 
 // Get all products
 router.get('/', getComments);

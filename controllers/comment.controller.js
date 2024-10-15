@@ -1,4 +1,4 @@
-const Comment = require('../models/comentarios.model');
+const Comment = require('../models/comment.model');
 
 // Get all comments
 const getComments = async (req, res) => {

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getDonations, getDonation, addDonation, updateDonation, deleteDonation} = require('../controllers/doacoes.controller.js');
+const {getDonations, getDonation, addDonation, updateDonation, deleteDonation} = require('../controllers/donation.controller.js');
 
 // Get all donatios
 router.get('/', getDonations);

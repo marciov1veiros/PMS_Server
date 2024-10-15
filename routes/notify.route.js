@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getNotifys, getNotify, addNotify, updateNotify, deleteNotify} = require('../controllers/notificacoes.controller');
+const {getNotifys, getNotify, addNotify, updateNotify, deleteNotify} = require('../controllers/notify.controller');
 
 // Get all notifys
 router.get('/', getNotifys);

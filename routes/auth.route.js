@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {login, register, logout, currentUser, forgotPassword, resetPassword} = require('../controllers/autenticacao.controller');
+const {login, register, logout, currentUser, forgotPassword, resetPassword} = require('../controllers/auth.controller');
 const passport = require('passport');
 
 // Rotas de autenticação

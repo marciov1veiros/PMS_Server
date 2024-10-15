@@ -1,4 +1,4 @@
-const Notify = require('../models/notificacoes.model');
+const Notify = require('../models/notify.model');
 
 // Get all notifys
 const getNotifys = async (req, res) => {

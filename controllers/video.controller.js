@@ -1,4 +1,4 @@
-const Video = require('../models/videos.model');
+const Video = require('../models/video.model');
 
 // Get all videos
 const getVideos = async (req, res) => {

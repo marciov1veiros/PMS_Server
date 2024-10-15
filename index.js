@@ -5,21 +5,21 @@ const LocalStrategy = require('passport-local').Strategy;
 const JwtStrategy = require('passport-jwt').Strategy; // Importando a estratégia JWT
 const ExtractJwt = require('passport-jwt').ExtractJwt; // Importando para extrair o JWT
 const session = require('express-session');
-const User = require('./models/utilizadores.model.js'); // Importando o modelo de usuário
+const User = require('./models/user.model.js'); // Importando o modelo de usuário
 require('dotenv').config();
 
 // Const Routes
 const productRoute = require('./routes/product.route.js');
-const campanhasRoute = require('./routes/campanhas.route.js');
-const comentariosRoute = require('./routes/comentarios.route.js');
-const doacoesRoute = require('./routes/doacoes.route.js');
-const imagensRoute = require('./routes/imagens.route.js');
-const notificacoesRoute = require('./routes/notificacoes.route.js');
-const papeisRoute = require('./routes/papeis.route.js');
-const subscricoesRoute = require('./routes/subscricoes.route.js');
-const utilizadoresRoute = require('./routes/utilizadores.route.js');
-const videosRoute = require('./routes/videos.route.js');
-const autenticacaoRoute = require('./routes/autenticacao.route.js');
+const campaignRoute = require('./routes/campaign.route.js');
+const commentRoute = require('./routes/comment.route.js');
+const donationRoute = require('./routes/donation.route.js');
+const imageRoute = require('./routes/image.route.js');
+const notifyRoute = require('./routes/notify.route.js');
+const roleRoute = require('./routes/role.route.js');
+const subscriptionRoute = require('./routes/subscription.route.js');
+const userRoute = require('./routes/user.route.js');
+const videoRoute = require('./routes/video.route.js');
+const authRoute = require('./routes/auth.route.js');
 
 
 const app = express();
@@ -64,16 +64,16 @@ passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
 
 // routes
 app.use("/api/products", productRoute);
-app.use("/api/campanhas", campanhasRoute);
-app.use("/api/comentarios", comentariosRoute);
-app.use("/api/doacoes", doacoesRoute);
-app.use("/api/imagens", imagensRoute);
-app.use("/api/notificacoes", notificacoesRoute);
-app.use("/api/papeis", papeisRoute);
-app.use("/api/subscricoes", subscricoesRoute);
-app.use("/api/utilizadores", utilizadoresRoute);
-app.use("/api/videos", videosRoute);
-app.use("/api", autenticacaoRoute);
+app.use("/api/campaigns", campaignRoute);
+app.use("/api/comments", commentRoute);
+app.use("/api/donations", donationRoute);
+app.use("/api/images", imageRoute);
+app.use("/api/notifys", notifyRoute);
+app.use("/api/roles", roleRoute);
+app.use("/api/subscriptions", subscriptionRoute);
+app.use("/api/users", userRoute);
+app.use("/api/videos", videoRoute);
+app.use("/api", authRoute);
 
 app.get('/', (req, res) => {
     res.send('Hello from our server!')

@@ -1,4 +1,4 @@
-const Subscription = require('../models/subscricoes.model');
+const Subscription = require('../models/subscription.model');
 
 // Get all subscriptions
 const getSubscriptions = async (req, res) => {

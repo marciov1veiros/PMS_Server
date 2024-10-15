@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getVideos, getVideo, addVideo, updateVideo, deleteVideo} = require('../controllers/videos.controller');
+const {getVideos, getVideo, addVideo, updateVideo, deleteVideo} = require('../controllers/video.controller');
 
 // Get all videos
 router.get('/', getVideos);

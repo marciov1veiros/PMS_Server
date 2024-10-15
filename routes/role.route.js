@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getRoles, getRole, addRole, updateRole, deleteRole} = require('../controllers/papeis.controller');
+const {getRoles, getRole, addRole, updateRole, deleteRole} = require('../controllers/role.controller');
 
 // Get all roles
 router.get('/', getRoles);
