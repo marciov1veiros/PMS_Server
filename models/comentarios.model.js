@@ -9,6 +9,10 @@ const CommentSchema = mongoose.Schema(
         description: {
             type: String,
             required: [true, "Please enter description"],
+        },
+        creation_date: {
+            type: Date,
+            required: true
         }
     }
 );

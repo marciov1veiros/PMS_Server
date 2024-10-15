@@ -6,14 +6,6 @@ const CampaignSchema = mongoose.Schema(
             ref: "User",
             required: true,
         },
-        total_value: {
-            type: Number,
-            required: [true, "Please enter the total value"],
-        },
-        total_value_app: {
-            type: Number,
-            required: [true, "Please enter the total value app"],
-        },
         title: {
             type: String,
             required: true,
@@ -21,10 +13,6 @@ const CampaignSchema = mongoose.Schema(
         description: {
             type: String,
             required: false,
-        },
-        objective: {
-            type: Number,
-            required: [true, "Please enter the objective"],
         },
         category: {
             type: String,
@@ -36,6 +24,40 @@ const CampaignSchema = mongoose.Schema(
             required: true,
             default: 'low',
         },
+        objective: {
+            type: Number,
+            required: [true, "Please enter the objective"],
+        },
+        inicial_date: {
+            type: Date,
+            required: true
+        },
+        final_date: {
+            type: Date,
+            required: false,
+            validate: {
+                validator: function (v) {
+                    return v > this.init_date;
+                },
+                message: "End date must be after the initial date",
+            },
+        },
+        creation_date: {
+            type: Date,
+            required: true
+        },
+        aproval_date: {
+            type: Date,
+            required: false
+        },
+        total_value: {
+            type: Number,
+            required: [true, "Please enter the total value"],
+        },
+        total_value_app: {
+            type: Number,
+            required: [true, "Please enter the total value app"],
+        },
         state: {
             type: String,
             enum: ['active', 'inactive'],
@@ -46,29 +68,11 @@ const CampaignSchema = mongoose.Schema(
             type: String,
             required: false,
         },
-        state_alt_user: {
-            type: mongoose.Schema.Types.String,
-            ref: "User",
-            required: false,
-        },
-        state_alt_date: {
+        state_date_change: {
             type: Date,
             required: false,
         },
-        init_date: {
-            type: Date,
-            required: true
-        },
-        end_date: {
-            type: Date,
-            required: false,
-            validate: {
-                validator: function (v) {
-                    return v > this.init_date;
-                },
-                message: "End date must be after the initial date",
-            },
-        }
+        
     }
 );
 

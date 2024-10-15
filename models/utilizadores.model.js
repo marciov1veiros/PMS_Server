@@ -19,12 +19,12 @@ const UserSchema = mongoose.Schema(
             type: Boolean,
             required: true,
         },
-        notify: [{
+        notify_id: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Notify",
             required: false,
         }],
-        role: {
+        role_id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Role",
             required: true,

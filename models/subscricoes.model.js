@@ -11,6 +11,10 @@ const SubscriptionSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Campaign",
             required: true,
+        },
+        date_creation: {
+            type: Date,
+            required: true,
         }
     }
 );

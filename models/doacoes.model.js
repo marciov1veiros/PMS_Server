@@ -30,6 +30,19 @@ const DonationSchema = mongoose.Schema(
         mbway: {
             type: String,
             required: false,
+        },
+        creation_date: {
+            type: Date,
+            required: true,
+        },
+        refound: {
+            type: Boolean,
+            required: true,
+            default: false,
+        },
+        refound_date: {
+            type: Date,
+            required: false,
         }
     }
 );
