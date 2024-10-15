@@ -65,7 +65,7 @@ const forgotPassword = async (req, res) => {
         }
 
         // Gerar token JWT para redefinição de senha
-        const token = jwt.sign({ id: user._id }, '8N4!mZ#q3WgT$3n&hF2@kR8zL5q%f7J4sH9!kV6eR2t#eM8xC5');
+        const token = jwt.sign({ id: user._id }, '8N4!mZ#q3WgT$3n&hF2@kR8zL5q%f7J4sH9!kV6eR2t#eM8xC5', { expiresIn: '15m' });
 
         // Enviar e-mail com o token JWT
         const mailOptions = {

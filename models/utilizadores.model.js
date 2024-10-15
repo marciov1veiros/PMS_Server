@@ -28,7 +28,20 @@ const UserSchema = mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "Role",
             required: true,
+        },
+        state: {
+            type: String,
+            enum: ['active', 'inactive', 'suspended'],
+            required: true,
+            default: 'inactive',
+        },
+        state_description: {
+            type: String,
+            required: false,
         }
+    },
+    {
+        timestamps: true
     }
 );
 
