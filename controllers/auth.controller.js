@@ -28,8 +28,8 @@ const login = (req, res, next) => {
 };
 
 const register = (req, res) => {
-    const { _id, password, name, surname, anonymous, role } = req.body;
-    const newUser = new User({ _id, name, surname, anonymous, role });
+    const { _id, password, name, surname, anonymous, role_id } = req.body;
+    const newUser = new User({ _id, name, surname, anonymous, role_id });
 
     User.register(newUser, password, (err, user) => {
         if (err) {
