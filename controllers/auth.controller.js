@@ -57,7 +57,7 @@ const currentUser = (req, res) => {
 // Solicitar redefinição de senha (enviar e-mail com token JWT)
 const forgotPassword = async (req, res) => {
     try {
-        const { email } = req.body;
+        const { email, page } = req.body;
         const user = await User.findById(email);
 
         if (!user) {
@@ -73,7 +73,7 @@ const forgotPassword = async (req, res) => {
             from: process.env.EMAIL_USER,
             subject: 'Redefinição de Senha',
             text: `Você solicitou uma redefinição de senha. Clique no link abaixo ou cole no navegador para redefinir sua senha:\n\n
-                   http://${req.headers.host}/api/reset-password/${token}\n\n
+                   http://${page}/changepassword/${token}\n\n
                    Se você não solicitou isso, ignore este e-mail.`
         };
 
