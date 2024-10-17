@@ -27,6 +27,19 @@ const login = (req, res, next) => {
     })(req, res, next);
 };
 
+
+const verfPassword = (req, res, next) => {
+    passport.authenticate('local', (err, user, info) => {
+        if (err) return next(err);
+        if (!user) return res.status(401).json({ message: 'Senha atual está incorreta.' });
+
+        req.logIn(user, err => {
+            if (err) return next(err);
+            return res.json({ message: 'Password Correta' });
+        });
+    })(req, res, next);
+};
+
 const register = (req, res) => {
     const { _id, password, name, surname, anonymous, role_id } = req.body;
     const newUser = new User({ _id, name, surname, anonymous, role_id });
@@ -133,5 +146,6 @@ module.exports = {
     logout,
     currentUser,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    verfPassword
 }
