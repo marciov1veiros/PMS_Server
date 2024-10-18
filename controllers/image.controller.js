@@ -33,7 +33,7 @@ const getImage = async (req, res) => {
 const addImage = async (req, res) => {
     try {
         const image = await Image.create({
-            path: req.file.filename,
+            path: "images/" + req.file.filename,
         });
         res.status(200).json(image);
     } catch (error) {

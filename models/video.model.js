@@ -4,7 +4,7 @@ const VideoSchema = mongoose.Schema(
         campaign_id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Campaign",
-            required: true,
+            required: false,
         },
         path: {
             type: String,

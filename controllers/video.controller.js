@@ -15,7 +15,7 @@ const getVideo = async (req, res) => {
     try {
         const {id} = req.params
         const video = await Video.findById(id);
-        res.status(200).json(video);
+        res.status(200).json(video)
     } catch (error) {
         res.status(500).json({message: error.message});
     }
@@ -25,7 +25,7 @@ const getVideo = async (req, res) => {
 const addVideo = async (req, res) => {
     try {
         const video = await Video.create({
-            path: req.file.filename,
+            path: "videos/" + req.file.filename,
         });
         res.status(200).json(video);
     } catch (error) {

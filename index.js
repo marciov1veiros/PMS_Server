@@ -41,6 +41,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/videos', express.static(path.join(__dirname, 'videos')));
 
 passport.use(new LocalStrategy(User.authenticate())); // Autenticação local com o Passport
 passport.serializeUser(User.serializeUser());
