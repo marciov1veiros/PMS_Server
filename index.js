@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -7,6 +8,7 @@ const ExtractJwt = require('passport-jwt').ExtractJwt; // Importando para extrai
 const session = require('express-session');
 const User = require('./models/user.model.js'); // Importando o modelo de usuário
 require('dotenv').config();
+
 
 // Const Routes
 const productRoute = require('./routes/product.route.js');
@@ -38,6 +40,7 @@ app.use(session({
 // Inicializando o Passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 passport.use(new LocalStrategy(User.authenticate())); // Autenticação local com o Passport
 passport.serializeUser(User.serializeUser());

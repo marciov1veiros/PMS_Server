@@ -1,5 +1,13 @@
 const Image = require('../models/image.model');
 
+/*const getImages = async (req, res) => {
+    try {
+        res.status(200).sendFile('/images/IHC-1-1729261106807.png', { root: '.' });
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}*/ //Caso seja necessario
+
 // Get all images
 const getImages = async (req, res) => {
     try {
@@ -24,7 +32,9 @@ const getImage = async (req, res) => {
 // Add image
 const addImage = async (req, res) => {
     try {
-        const image = await Image.create(req.body);
+        const image = await Image.create({
+            path: req.file.filename,
+        });
         res.status(200).json(image);
     } catch (error) {
         res.status(500).json({message: error.message});
