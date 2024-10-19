@@ -38,6 +38,16 @@ const UserSchema = mongoose.Schema(
         state_description: {
             type: String,
             required: false,
+        },
+        xp_current: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+        xp_total: {
+            type: Number,
+            required: true,
+            default: 32,
         }
     },
     {

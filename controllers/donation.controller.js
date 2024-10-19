@@ -3,7 +3,29 @@ const Donation = require('../models/donation.model');
 // Get all donations
 const getDonations = async (req, res) => {
     try {
-        const donations = await Donation.find({});
+        const donations = await Donation.find({}).populate('campaign_id').populate('user_id');
+        res.status(200).json(donations);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}
+
+// Get all donations from that Campaign
+const getDonationsCampaign = async (req, res) => {
+    try {
+        const {id} = req.params
+        const donations = await Donation.find({campaign_id: id }).populate('user_id');
+        res.status(200).json(donations);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}
+
+// Get all donations from that user
+const getDonationsUser = async (req, res) => {
+    try {
+        const {id} = req.params
+        const donations = await Donation.find({ user_id: id }).populate('campaign_id');
         res.status(200).json(donations);
     } catch (error) {
         res.status(500).json({message: error.message});
@@ -14,7 +36,7 @@ const getDonations = async (req, res) => {
 const getDonation = async (req, res) => {
     try {
         const {id} = req.params
-        const donation = await Donation.findById(id);
+        const donation = await Donation.findById(id).populate('campaign_id').populate('user_id');
         res.status(200).json(donation);
     } catch (error) {
         res.status(500).json({message: error.message});
@@ -65,5 +87,7 @@ module.exports = {
     getDonation,
     addDonation,
     updateDonation,
-    deleteDonation
+    deleteDonation,
+    getDonationsUser,
+    getDonationsCampaign
 }

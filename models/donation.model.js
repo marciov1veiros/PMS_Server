@@ -9,7 +9,7 @@ const DonationSchema = mongoose.Schema(
         campaign_id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Campaign",
-            required: true,
+            required: false,
         },
         value: {
             type: Number,
@@ -34,6 +34,7 @@ const DonationSchema = mongoose.Schema(
         creation_date: {
             type: Date,
             required: true,
+            default: Date.now(),
         },
         refound: {
             type: Boolean,
