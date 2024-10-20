@@ -30,7 +30,8 @@ const CampaignSchema = mongoose.Schema(
         },
         inicial_date: {
             type: Date,
-            required: true
+            required: true,
+            default: Date.now(),
         },
         final_date: {
             type: Date,
@@ -44,7 +45,8 @@ const CampaignSchema = mongoose.Schema(
         },
         creation_date: {
             type: Date,
-            required: true
+            required: true,
+            default: Date.now(),
         },
         aproval_date: {
             type: Date,
