@@ -119,7 +119,7 @@ const resetPassword = async (req, res) => {
             const user = await User.findById(decoded.id);
 
             if (!user) {
-                return res.status(404).json({ message: 'Usuário não encontrado.' });
+                return res.status(404).json({ message: 'Utilizador não encontrado.' });
             }
 
             // Usar o Passport-Local-Mongoose para definir a nova senha

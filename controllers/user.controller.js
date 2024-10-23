@@ -21,15 +21,15 @@ const getUser = async (req, res) => {
     }
 }
 
-// Add User
-const addUser = async (req, res) => {
+// Add User Nota: Esta a ser realizado pelo register
+/*const addUser = async (req, res) => {
     try {
         const user = await User.create(req.body);
         res.status(200).json(user);
     } catch (error) {
         res.status(500).json({message: error.message});
     }
-};
+};*/
 
 // Update User
 const updateUser = async (req,res) => {
@@ -63,7 +63,6 @@ const deleteUser = async (req,res) => {
 module.exports = {
     getUsers,
     getUser,
-    addUser,
     updateUser,
     deleteUser
 }
