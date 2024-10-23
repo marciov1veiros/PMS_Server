@@ -2,9 +2,23 @@ const mongoose = require("mongoose");
 
 const NotifySchema = mongoose.Schema(
     {
-        type: {
+        user_id: {
+            type: mongoose.Schema.Types.String,
+            ref: "User",
+            required: true,
+        },
+        description: {
             type: String,
-            required: [true, "Please enter the type"],
+            required: false,
+        },
+        origin: {
+            type: String,
+            required: false,
+        },
+        creation_date: {
+            type: Date,
+            required: true,
+            default: Date.now(),
         }
     }
 );

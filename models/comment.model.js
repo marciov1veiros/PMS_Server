@@ -12,7 +12,8 @@ const CommentSchema = mongoose.Schema(
         },
         creation_date: {
             type: Date,
-            required: true
+            required: true,
+            default: Date.now(),
         }
     }
 );

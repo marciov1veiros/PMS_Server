@@ -31,6 +31,10 @@ const DonationSchema = mongoose.Schema(
             type: String,
             required: false,
         },
+        mb: {
+            type: String,
+            required: false,
+        },
         creation_date: {
             type: Date,
             required: true,

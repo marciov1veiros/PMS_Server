@@ -15,6 +15,7 @@ const SubscriptionSchema = mongoose.Schema(
         date_creation: {
             type: Date,
             required: true,
+            default: Date.now(),
         }
     }
 );

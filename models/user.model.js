@@ -48,7 +48,18 @@ const UserSchema = mongoose.Schema(
             type: Number,
             required: true,
             default: 32,
-        }
+        },
+        donation_total: {
+            type: Number,
+            required: true,
+            default: 0,
+        },
+        notify_type: [{
+            type: String,
+            enum: ['email', '', 'App'],
+            required: true,
+            default: '',
+        }]
     },
     {
         timestamps: true
