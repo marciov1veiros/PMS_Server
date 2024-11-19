@@ -18,6 +18,17 @@ const getImages = async (req, res) => {
     }
 }
 
+// Get all images from that Campaign
+const getImagesCampaign = async (req, res) => {
+    try {
+        const {id} = req.params
+        const images = await Image.find({campaign_id: id });
+        res.status(200).json(images);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}
+
 // Get image by id
 const getImage = async (req, res) => {
     try {
@@ -33,6 +44,7 @@ const getImage = async (req, res) => {
 const addImage = async (req, res) => {
     try {
         const image = await Image.create({
+            campaign_id: req.body.campaignID,
             path: "images/" + req.file.filename,
         });
         res.status(200).json(image);
@@ -73,6 +85,7 @@ const deleteImage = async (req,res) => {
 module.exports = {
     getImages,
     getImage,
+    getImagesCampaign,
     addImage,
     updateImage,
     deleteImage

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require('multer');
-const {getImages, getImage, addImage, updateImage, deleteImage} = require('../controllers/image.controller.js');
+const {getImages, getImage, addImage, updateImage, deleteImage, getImagesCampaign} = require('../controllers/image.controller.js');
 const path = require('path');
 
 // Configuração do multer
@@ -22,6 +22,8 @@ const upload = multer({ storage: storage });
 router.get('/', getImages);
 // Get image by id
 router.get("/:id", getImage);
+// Get image by campaign
+router.get("/campaign/:id", getImagesCampaign);
 // Add image
 router.post('/', upload.single('file'), addImage);
 // Update image
