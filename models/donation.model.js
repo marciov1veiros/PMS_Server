@@ -6,6 +6,10 @@ const DonationSchema = mongoose.Schema(
             ref: "User",
             required: true,
         },
+        user_name: {
+            type: String,
+            required: true,
+        },
         campaign_id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Campaign",

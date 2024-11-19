@@ -46,6 +46,21 @@ const updateCampaign = async (req,res) => {
     }
 };
 
+// Update total value
+const updateCampaignTotalValue = async (id, value, value_app) => {
+    try {
+        const campaign = await Campaign.findById(id);
+        if (!campaign){
+            return res.status(404).json({message: "Campaign not found"});
+        }
+        campaign.total_value = campaign.total_value + parseInt(value, 10);
+        campaign.total_value_app = (campaign.total_value_app || 0) + parseInt(value_app, 10);
+        await campaign.save();
+    } catch (error) {
+        throw new Error(error.message);
+    }
+};
+
 // Delete campaign
 const deleteCampaign = async (req,res) => {
     try {
@@ -65,5 +80,6 @@ module.exports = {
     getCampaign,
     addCampaign,
     updateCampaign,
+    updateCampaignTotalValue,
     deleteCampaign
 }

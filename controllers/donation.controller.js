@@ -1,4 +1,5 @@
 const Donation = require('../models/donation.model');
+const Campaign = require('../controllers/campaign.controller');
 
 // Get all donations
 const getDonations = async (req, res) => {
@@ -46,6 +47,8 @@ const getDonation = async (req, res) => {
 // Add donation
 const addDonation = async (req, res) => {
     try {
+        const { campaign_id, value, value_app } = req.body;
+        await Campaign.updateCampaignTotalValue(campaign_id, value, value_app);
         const donation = await Donation.create(req.body);
         res.status(200).json(donation);
     } catch (error) {

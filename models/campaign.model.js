@@ -6,6 +6,10 @@ const CampaignSchema = mongoose.Schema(
             ref: "User",
             required: true,
         },
+        user_name: {
+            type: String,
+            required: true,
+        },
         title: {
             type: String,
             required: true,
@@ -38,7 +42,7 @@ const CampaignSchema = mongoose.Schema(
             required: false,
             validate: {
                 validator: function (v) {
-                    return v > this.init_date;
+                    return v > this.inicial_date;
                 },
                 message: "End date must be after the initial date",
             },
@@ -55,10 +59,12 @@ const CampaignSchema = mongoose.Schema(
         total_value: {
             type: Number,
             required: [true, "Please enter the total value"],
+            default: 0,
         },
         total_value_app: {
             type: Number,
             required: [true, "Please enter the total value app"],
+            default: 0,
         },
         state: {
             type: String,
@@ -74,7 +80,10 @@ const CampaignSchema = mongoose.Schema(
             type: Date,
             required: false,
         },
-        
+        donation_min_value: {
+            type: Number,
+            required: false
+        }
     }
 );
 
