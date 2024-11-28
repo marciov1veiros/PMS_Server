@@ -23,19 +23,11 @@ const DonationSchema = mongoose.Schema(
             type: Number,
             required: [true, "Please enter the value app"],
         },
-        paypal: {
+        payment_method: {
             type: String,
             required: false,
         },
-        iban: {
-            type: String,
-            required: false,
-        },
-        mbway: {
-            type: String,
-            required: false,
-        },
-        mb: {
+        description_payment_method: {
             type: String,
             required: false,
         },
