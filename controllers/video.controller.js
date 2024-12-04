@@ -10,6 +10,17 @@ const getVideos = async (req, res) => {
     }
 }
 
+// Get all images from that Campaign
+const getVideosCampaign = async (req, res) => {
+    try {
+        const {id} = req.params
+        const videos = await Video.find({campaign_id: id });
+        res.status(200).json(videos);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}
+
 // Get video by id
 const getVideo = async (req, res) => {
     try {
@@ -25,6 +36,7 @@ const getVideo = async (req, res) => {
 const addVideo = async (req, res) => {
     try {
         const video = await Video.create({
+            campaign_id: req.body.campaignID,
             path: "videos/" + req.file.filename,
         });
         res.status(200).json(video);
@@ -64,6 +76,7 @@ const deleteVideo = async (req,res) => {
 
 module.exports = {
     getVideos,
+    getVideosCampaign,
     getVideo,
     addVideo,
     updateVideo,
