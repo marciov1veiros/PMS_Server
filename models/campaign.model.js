@@ -83,6 +83,10 @@ const CampaignSchema = mongoose.Schema(
         donation_min_value: {
             type: Number,
             required: false
+        },
+        local: {
+            type: String,
+            required: true
         }
     }
 );
