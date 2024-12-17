@@ -68,9 +68,9 @@ const CampaignSchema = mongoose.Schema(
         },
         state: {
             type: String,
-            enum: ['active', 'inactive'],
+            enum: ['active', 'inactive', 'suspend'],
             required: true,
-            default: 'active',
+            default: 'inactive',
         },
         state_description: {
             type: String,
