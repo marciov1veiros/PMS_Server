@@ -31,7 +31,7 @@ const UserSchema = mongoose.Schema(
         },
         state: {
             type: String,
-            enum: ['active', 'inactive', 'suspended'],
+            enum: ['active', 'inactive', 'suspend'],
             required: true,
             default: 'inactive',
         },
