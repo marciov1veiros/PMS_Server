@@ -3,7 +3,18 @@ const Comment = require('../models/comment.model');
 // Get all comments
 const getComments = async (req, res) => {
     try {
-        const comments = await Comment.find({});
+        const comments = await Comment.find({}).populate('campaign_id').populate('user_email');
+        res.status(200).json(comments);
+    } catch (error) {
+        res.status(500).json({message: error.message});
+    }
+}
+
+// Get all comments from that Campaign
+const getCommentsCampaign = async (req, res) => {
+    try {
+        const {id} = req.params
+        const comments = await Comment.find({campaign_id: id }).populate('user_email');
         res.status(200).json(comments);
     } catch (error) {
         res.status(500).json({message: error.message});
@@ -62,6 +73,7 @@ const deleteComment = async (req,res) => {
 
 module.exports = {
     getComments,
+    getCommentsCampaign,
     getComment,
     addComment,
     updateComment,
