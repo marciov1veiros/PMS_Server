@@ -5,7 +5,6 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 
-// Configuração do Nodemailer para envio de e-mails
 const transporter = nodemailer.createTransport({
     service: 'Gmail', 
     auth: {
@@ -67,7 +66,6 @@ const currentUser = (req, res) => {
     res.status(401).json({ message: 'Não autenticado' });
 };
 
-// Solicitar redefinição de senha (enviar e-mail com token JWT)
 const forgotPassword = async (req, res) => {
     try {
         const { email, page } = req.body;
@@ -77,10 +75,8 @@ const forgotPassword = async (req, res) => {
             return res.status(404).json({ message: 'Usuário não encontrado.' });
         }
 
-        // Gerar token JWT para redefinição de senha
         const token = jwt.sign({ id: user._id }, '8N4!mZ#q3WgT$3n&hF2@kR8zL5q%f7J4sH9!kV6eR2t#eM8xC5', { expiresIn: '15m' });
 
-        // Enviar e-mail com o token JWT
         const mailOptions = {
             to: user._id,
             from: process.env.EMAIL_USER,
@@ -103,32 +99,28 @@ const forgotPassword = async (req, res) => {
     }
 };
 
-// Redefinir senha usando o token JWT
+
 const resetPassword = async (req, res) => {
     try {
         const { token } = req.params;
         const { newPassword } = req.body;
 
-        // Verificar o token JWT
         jwt.verify(token, '8N4!mZ#q3WgT$3n&hF2@kR8zL5q%f7J4sH9!kV6eR2t#eM8xC5', async (err, decoded) => {
             if (err) {
                 return res.status(400).json({ message: 'Token inválido ou expirado.' });
             }
 
-            // Buscar o usuário pelo ID decodificado do token JWT
             const user = await User.findById(decoded.id);
 
             if (!user) {
                 return res.status(404).json({ message: 'Utilizador não encontrado.' });
             }
 
-            // Usar o Passport-Local-Mongoose para definir a nova senha
             user.setPassword(newPassword, async (err) => {
                 if (err) {
                     return res.status(500).json({ message: 'Erro ao redefinir a senha.' });
                 }
 
-                // Salvar o usuário com a nova senha
                 await user.save();
 
                 res.status(200).json({ message: 'Senha redefinida com sucesso.' });

@@ -1,4 +1,15 @@
 const Notify = require('../models/notify.model');
+const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
+require('dotenv').config();
+
+const transporter = nodemailer.createTransport({
+    service: 'Gmail', 
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+    }
+});
 
 // Get all notifys
 const getNotifys = async (req, res) => {
@@ -60,10 +71,36 @@ const deleteNotify = async (req,res) => {
     }
 };
 
+//Send notify
+const sendNotify = async (req, res) => {
+    try {
+        const { email, campaign_title, campaign_value } = req.body;
+
+        const mailOptions = {
+            to: email,
+            from: process.env.EMAIL_USER,
+            subject: 'Notificação sobre a campanha '+ campaign_title,
+            text: `A campanha `+ campaign_title + 'recebeu uma nova doação. O seu valor total angariado é '+ campaign_value
+        };
+
+        transporter.sendMail(mailOptions, (err) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ message: 'Erro ao enviar o e-mail.' });
+            }
+            res.status(200).json({ message: 'E-mail de capanha enviado com sucesso!' });
+        });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Erro ao processar o envio da notificação da campanha' });
+    }
+};
+
 module.exports = {
     getNotifys,
     getNotify,
     addNotify,
     updateNotify,
-    deleteNotify
+    deleteNotify,
+    sendNotify
 }

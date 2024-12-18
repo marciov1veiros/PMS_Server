@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {getNotifys, getNotify, addNotify, updateNotify, deleteNotify} = require('../controllers/notify.controller');
+const {getNotifys, getNotify, addNotify, updateNotify, deleteNotify, sendNotify} = require('../controllers/notify.controller');
 
 // Get all notifys
 router.get('/', getNotifys);
@@ -12,5 +12,7 @@ router.post('/', addNotify);
 router.put('/:id', updateNotify);
 // Delete notify
 router.delete('/:id', deleteNotify);
+// Send notifications
+router.post('/sendnotify', sendNotify)
 
 module.exports = router;
