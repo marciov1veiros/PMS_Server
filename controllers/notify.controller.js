@@ -80,7 +80,7 @@ const sendNotify = async (req, res) => {
             to: email,
             from: process.env.EMAIL_USER,
             subject: 'Notificação sobre a campanha '+ campaign_title,
-            text: `A campanha `+ campaign_title + 'recebeu uma nova doação. O seu valor total angariado é '+ campaign_value
+            text: `A campanha `+ campaign_title + 'recebeu uma nova doação. O seu valor total angariado é '+ campaign_value + ' €.'
         };
 
         transporter.sendMail(mailOptions, (err) => {
