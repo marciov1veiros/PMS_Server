@@ -54,7 +54,7 @@ describe('GET /api/campaign', () => {
         // Assert the first campaign has the expected properties
         expect(response.body[0]).toHaveProperty('_id', '67585c1b1932247950c000ba');
         expect(response.body[0]).toHaveProperty('user_email', 'mvgs2003@hotmail.com');
-        expect(response.body[0]).toHaveProperty('user_name', 'Márcio');
+        expect(response.body[0]).toHaveProperty('user_name', 'Miguel Ferreira');
         expect(response.body[0]).toHaveProperty('title', 'Ajude as famílias afetadas pelos incêndios na Serra de Água');
         expect(response.body[0]).toHaveProperty('description', 'Na sequência do devastador incêndio que atingiu a Madeira em agosto de 2024, inúmeras famílias perderam as suas casas, bens e meios de subsistência. Este incêndio de grande dimensão destruiu hectares de zonas florestal e áreas residenciais, causando um impacto profundo nas comunidades locais. \n' +
             '\n' +
